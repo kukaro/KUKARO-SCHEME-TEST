@@ -270,6 +270,3 @@
                                    '(/ pound (expt inch 2))
                                    'fahrenheit
                                    'mole))
-
-(display (sphere-radius (conventional-gas-law-volume 14.7 68 1)))
-(newline)

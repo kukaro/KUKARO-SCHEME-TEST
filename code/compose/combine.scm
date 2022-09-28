@@ -1,7 +1,14 @@
-(define (compose f g)
-	(define (the-composition . args)
-		(f (apply g args)))
-	the-composition)
+(define (compose . args)
+  (compose* args))
+ 
+(define (compose* args)
+  (case (length args)
+    ((0) (lambda (x) x))
+    ((1) (car args))
+    (else (reduce-right (lambda (f g)
+                          (lambda (x) (f (g x))))
+                        (lambda (x) x)
+                        args))))
 
 (define (parallel-combine h f g)
   (define (the-combination . args)
