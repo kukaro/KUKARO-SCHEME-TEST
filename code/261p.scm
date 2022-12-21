@@ -1,4 +1,12 @@
-(load "./pattern-matching-on-graphs/lists.scm")
+(load "./common/overrides.scm")
+(load "./common/utils.scm")
+;n어쩌구로 시작하는건 overrides.scm을 추가해야한다
+(load "./pattern-matching-on-graphs/graph.scm")
+
+(display (string "pair test : " (pair? (cons 1 2)) "\n"))
+(display (string "pair test : " (pair? (list 1 2)) "\n"))
+(display (string "pair test : " (pair? (+ 1 2)) "\n"))
+(newline)
 
 (define (g:cons car cdr)
     (let ((pair (make-graph-node 'pair)))
@@ -7,3 +15,24 @@
         pair))
 (define (g:car pair) (pair 'edge-value 'car))
 (define (g:cdr pair) (pair 'edge-value 'cdr))
+
+(define nil (make-graph-node 'nil))
+(define (g:null) nil)
+(define (g:null? object) (eqv? object nil))
+
+(define (list->graph list) (if (pair? list)
+    (g:cons (car list) (list->graph (cdr list))) (g:null)))
+
+(define g (list->graph '(a b c)))
+(display g)
+(newline)
+(display (string "(g:car g) : " (g:car g) "\n"))
+(display (string "(g:cdr g) : " (g:cdr g) "\n"))
+(display (string "(g:car (g:cdr g)) : " (g:car (g:cdr g)) "\n"))
+(newline)
+(define result (and (eqv? 'a (g:car g))
+    (eqv? 'b (g:car (g:cdr g)))
+    (eqv? 'c (g:car (g:cdr (g:cdr g))))
+    (g:null? (g:cdr (g:cdr (g:cdr g))))))
+(display result)
+(newline)

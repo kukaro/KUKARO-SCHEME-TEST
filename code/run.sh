@@ -1,3 +1,3 @@
 page=$1
-scm=`ls ${page}*.scm`
+scm=`ls ${page}*`
 scheme --quiet < $scm
