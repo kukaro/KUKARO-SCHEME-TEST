@@ -1,0 +1,5 @@
+; (define (g:cons car cdr)
+;   (let ((pair (make-graph-node 'pair)))
+;     (pair 'connect! 'car car)
+;     (pair 'connect! 'cdr cdr)
+;     pair))
