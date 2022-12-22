@@ -1,0 +1,28 @@
+(define mylist (list 'a 'b))
+(display mylist)
+(newline)
+(define mylist2 `(a b)))
+(display mylist2)
+(newline)
+(define mylist3 (list 'a 'b mylist))
+(display mylist3)
+(newline)
+(define mylist4 `(a b, mylist)))
+(display mylist4)
+(newline)
+(define result `((+ 1 2) (+ 3 4)))
+(display result)
+(newline)
+(display (list-ref result 1))
+(newline)
+(display (eval (list-ref result 1) (scheme-report-environment 5)))
+(newline)
+(display (list '(+ 1 2) '(+ 3 4)))
+(newline)
+
+(display "##########\n")
+(display (eval '(+ 6 6) (scheme-report-environment 5)))
+; 반드시 버전 5여야한다
+; https://people.csail.mit.edu/jaffer/r5rs/Eval.html
+; 다른 scheme에서는 보통 eval이 인자가 하나이다
+(newline)
